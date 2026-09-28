@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Portfolio Muhamad Alfin Kamal Artna">
+    <title>Muhamad Alfin Kamal Artna | Portfolio</title>
+
+    <style>
+        /* =====================================================
+           RESET & VARIABLES
+        ===================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #080b12;
+            --bg-soft: #0d111a;
+            --card: rgba(255,255,255,0.055);
+            --card-hover: rgba(255,255,255,0.09);
+            --text: #f5f7fa;
+            --muted: #9ca6b5;
+            --gold: #d6b36a;
+            --gold-light: #f0d899;
+            --line: rgba(255,255,255,0.1);
+            --radius: 22px;
+            --max-width: 1180px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 80% 10%, rgba(214,179,106,0.12), transparent 25%),
+                radial-gradient(circle at 10% 80%, rgba(70,120,255,0.08), transparent 25%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: auto;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* =====================================================
+           LOADER
+        ===================================================== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.7s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-name {
+            font-size: 25px;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .loader-line {
+            width: 180px;
+            height: 2px;
+            background: var(--line);
+            margin: 18px auto;
+            overflow: hidden;
+        }
+
+        .loader-line span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--gold);
+            animation: loading 1.7s ease forwards;
+        }
+
+        @keyframes loading {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(8,11,18,0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav {
+            width: min(90%, var(--max-width));
+            margin: auto;
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .hero-content {
+            animation: heroUp 1s ease forwards;
+        }
+
+        @keyframes heroUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 82px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 23px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+            border: 1px solid var(--line);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #111;
+            border-color: var(--gold);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: var(--gold-light);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        /* PHOTO */
+        .photo-wrapper {
+            position: relative;
+            width: min(380px, 80vw);
+            aspect-ratio: 1 / 1;
+            margin: auto;
+        }
+
+        .photo-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: -20px;
+            border: 1px solid rgba(214,179,106,0.3);
+            border-radius: 35px;
+            transform: rotate(6deg);
+        }
+
+        .profile-photo {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 30px;
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(135deg, #151a25, #0d111a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            text-align: center;
+            color: var(--muted);
+            padding: 20px;
+        }
+
+        .photo-placeholder strong {
+            display: block;
+            color: var(--gold);
+            font-size: 50px;
+            margin-bottom: 8px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* =====================================================
+           SECTION HEADER
+        ===================================================== */
+        .section-heading {
+            margin-bottom: 50px;
+        }
+
+        .section-heading .small {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 4px;
+            font-weight: bold;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 5vw, 52px);
+            margin-top: 10px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 650px;
+            margin-top: 12px;
+        }
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-text,
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 30px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .highlight {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .highlight:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            border-color: rgba(214,179,106,0.35);
+        }
+
+        .highlight .icon {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .highlight h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .highlight p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           TIMELINE
+        ===================================================== */
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--line);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 65px;
+            margin-bottom: 45px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 4px;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 6px rgba(214,179,106,0.1);
+        }
+
+        .timeline-year {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .timeline-card {
+            margin-top: 8px;
+            padding: 25px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+        }
+
+        .timeline-card h3 {
+            margin-bottom: 7px;
+        }
+
+        .timeline-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .future-line {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           ACHIEVEMENTS
+        ===================================================== */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .achievement {
+            padding: 30px;
+            min-height: 230px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: var(--gold);
+            opacity: 0.05;
+            border-radius: 50%;
+            right: -50px;
+            bottom: -50px;
+        }
+
+        .achievement:hover {
+            transform: translateY(-8px);
+            border-color: rgba(214,179,106,0.4);
+            background: var(--card-hover);
+        }
+
+        .achievement-icon {
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .achievement h3 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .achievement .year {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .achievement p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .skill-box {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 30px;
+        }
+
+        .skill-box h3 {
+            margin-bottom: 25px;
+        }
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .skill-top span:last-child {
+            color: var(--gold);
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            border-radius: 10px;
+            transition: width 1.5s ease;
+        }
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--card);
+            transition: 0.4s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: rgba(214,179,106,0.4);
+        }
+
+        .project-image {
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(135deg, #151a25, #0d111a);
+            font-size: 50px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            color: var(--gold-light);
+            font-size: 10px;
+        }
+
+        /* =====================================================
+           FUTURE GOALS
+        ===================================================== */
+        .goal-box {
+            text-align: center;
+            padding: 65px 30px;
+            border: 1px solid rgba(214,179,106,0.2);
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at center, rgba(214,179,106,0.08), transparent 60%),
+                var(--card);
+        }
+
+        .goal-box h3 {
+            font-size: clamp(30px, 5vw, 55px);
+            margin-bottom: 20px;
+        }
+
+        .goal-box p {
+            color: var(--muted);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .roadmap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 45px;
+            gap: 12px;
+        }
+
+        .roadmap span {
+            padding: 12px 18px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.03);
+            font-size: 13px;
+        }
+
+        .roadmap .active {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+
+        .arrow {
+            color: var(--gold);
+        }
+
+        /* =====================================================
+           GALLERY
+        ===================================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 230px;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: linear-gradient(135deg, #151a25, #0d111a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: rgba(214,179,106,0.35);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 60px 30px;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: var(--card);
+        }
+
+        .contact-box h2 {
+            font-size: clamp(35px, 6vw, 60px);
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .social {
+            padding: 10px 17px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .social:hover {
+            color: var(--gold-light);
+            border-color: var(--gold);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--line);
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           SCROLL ANIMATION
+        ===================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .photo-wrapper {
+                width: min(320px, 75vw);
+                order: -1;
+            }
+
+            .about-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-grid,
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            section {
+                padding: 75px 0;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(8,11,18,0.97);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 25px;
+                gap: 18px;
+                transform: translateY(-150%);
+                transition: 0.4s;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .achievement-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item {
+                height: 180px;
+            }
+
+            .roadmap {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         LOADER
+    ====================================================== -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-name">ALFIN</div>
+            <div class="loader-line">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+    <header id="header">
+        <nav>
+            <a href="#home" class="logo">ALFIN<span>.</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+        <section id="home">
+            <div class="container hero">
+
+                <div class="hero-content">
+                    <div class="eyebrow">WELCOME TO MY PORTFOLIO</div>
+
+                    <h1>
+                        MUHAMAD ALFIN<br>
+                        <span>KAMAL ARTNA</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Alfin adalah pelajar SMA yang aktif, kreatif, dan memiliki
+                        semangat untuk terus berkembang. Ia tertarik pada bidang
+                        organisasi, teknologi, dan pendidikan, serta memiliki
+                        cita-cita menjadi seorang dokter.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#journey" class="btn btn-primary">
+                            Explore My Journey →
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FOTO PROFIL -->
+                <div class="photo-wrapper">
+                    <div class="profile-photo">
+
+                        <!--
+                            GANTI DENGAN:
+                            profile.jpg
+
+                            Letakkan file tersebut di folder yang sama
+                            dengan index.html.
+                        -->
+
+                        <img
+                            src="profile.jpg"
+                            alt="Foto Muhamad Alfin Kamal Artna"
+                            onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='block';"
+                        >
+
+                        <div class="photo-placeholder" id="photoPlaceholder" style="display:none;">
+                            <strong>AK</strong>
+                            Foto Profil<br>
+                            Muhamad Alfin
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="scroll-down">
+                SCROLL ↓
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+        <section id="about">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">01 — ABOUT ME</span>
+                    <h2>Who Am I?</h2>
+                    <p>
+                        Mengenal lebih dekat tentang diri saya, minat,
+                        dan hal-hal yang ingin saya kembangkan.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="about-text reveal">
+                        <p>
+                            Saya adalah Muhamad Alfin Kamal Artna, seorang
+                            pelajar SMA yang aktif dalam kegiatan akademik,
+                            organisasi, dan berbagai project.
+                        </p>
+
+                        <p>
+                            Saya percaya bahwa setiap pengalaman adalah bagian
+                            dari proses untuk berkembang. Karena itu, saya
+                            senang mempelajari hal baru, bekerja sama dengan
+                            orang lain, dan mencoba berbagai tantangan.
+                        </p>
+
+                        <p>
+                            Saat ini saya memiliki tujuan untuk terus berkembang
+                            secara akademik maupun nonakademik dan mempersiapkan
+                            diri untuk melanjutkan pendidikan ke Fakultas
+                            Kedokteran Universitas Padjadjaran.
+                        </p>
+                    </div>
+
+                    <div class="highlight-grid">
+
+                        <div class="highlight reveal">
+                            <div class="icon">🎓</div>
+                            <h3>Student</h3>
+                            <p>Pelajar SMA yang aktif dan terus berkembang.</p>
+                        </div>
+
+                        <div class="highlight reveal">
+                            <div class="icon">💡</div>
+                            <h3>Creative Learner</h3>
+                            <p>Tertarik pada teknologi, desain, dan project.</p>
+                        </div>
+
+                        <div class="highlight reveal">
+                            <div class="icon">🤝</div>
+                            <h3>Organization</h3>
+                            <p>Mengembangkan komunikasi dan leadership.</p>
+                        </div>
+
+                        <div class="highlight reveal">
+                            <div class="icon">🩺</div>
+                            <h3>Future Doctor</h3>
+                            <p>Memiliki target menuju Fakultas Kedokteran UNPAD.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             JOURNEY
+        ====================================================== -->
+        <section id="journey">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">02 — MY JOURNEY</span>
+                    <h2>The Journey So Far</h2>
+                    <p>
+                        Setiap tahun menjadi bagian dari perjalanan menuju
+                        tujuan yang lebih besar.
+                    </p>
+                </div>
+
+                <div class="timeline">
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2023</div>
+
+                        <div class="timeline-card">
+                            <h3>Starting SMP</h3>
+                            <p>
+                                Memulai perjalanan pendidikan di jenjang
+                                SMP dan mulai mengembangkan kemampuan akademik
+                                maupun nonakademik.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2025</div>
+
+                        <div class="timeline-card">
+                            <h3>Academic Achievements</h3>
+                            <p>
+                                Meraih Gold Medal GYO IPA SMP 2025 dan menjadi
+                                medalis MSC IPA SMP 2025.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2026</div>
+
+                        <div class="timeline-card">
+                            <h3>Graduation</h3>
+                            <p>
+                                Menyelesaikan pendidikan SMP dengan berbagai
+                                pencapaian akademik dan mendapatkan predikat
+                                Lulusan Terbaik SMP 2023–2026.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2026</div>
+
+                        <div class="timeline-card">
+                            <h3>New Chapter — SMA</h3>
+                            <p>
+                                Memulai perjalanan baru sebagai pelajar SMA,
+                                sekaligus mengembangkan pengalaman organisasi,
+                                project, dan kemampuan diri.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">FUTURE</div>
+
+                        <div class="timeline-card">
+                            <h3>Medical School</h3>
+                            <p class="future-line">
+                                Fakultas Kedokteran Universitas Padjadjaran
+                            </p>
+                            <p>
+                                Menjadikan pendidikan kedokteran sebagai salah
+                                satu tujuan jangka panjang.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             ACHIEVEMENTS
+        ====================================================== -->
+        <section id="achievements">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">03 — ACHIEVEMENTS</span>
+                    <h2>Achievements & Milestones</h2>
+                    <p>
+                        Beberapa pencapaian yang menjadi bagian dari perjalanan
+                        akademik saya.
+                    </p>
+                </div>
+
+                <div class="achievement-grid">
+
+                    <div class="achievement reveal">
+                        <div class="achievement-icon">🥇</div>
+                        <span class="year">2025</span>
+                        <h3>Gold Medal GYO IPA SMP</h3>
+                        <p>
+                            Meraih Gold Medal dalam kompetisi GYO bidang IPA
+                            tingkat SMP.
+                        </p>
+                    </div>
+
+
+                    <div class="achievement reveal">
+                        <div class="achievement-icon">🏅</div>
+                        <span class="year">2025</span>
+                        <h3>Medalis MSC IPA SMP</h3>
+                        <p>
+                            Menjadi medalis dalam MSC bidang IPA tingkat SMP.
+                        </p>
+                    </div>
+
+
+                    <div class="achievement reveal">
+                        <div class="achievement-icon">📚</div>
+                        <span class="year">2026</span>
+                        <h3>Nilai Tertinggi Angkatan</h3>
+                        <p>
+                            Meraih nilai tertinggi di angkatan pada saat
+                            kelulusan SMP.
+                        </p>
+                    </div>
+
+
+                    <div class="achievement reveal">
+                        <div class="achievement-icon">📝</div>
+                        <span class="year">2026</span>
+                        <h3>Nilai TKA Tertinggi</h3>
+                        <p>
+                            Meraih nilai TKA tertinggi di angkatan pada saat
+                            kelulusan.
+                        </p>
+                    </div>
+
+
+                    <div class="achievement reveal">
+                        <div class="achievement-icon">🏆</div>
+                        <span class="year">2023–2026</span>
+                        <h3>Lulusan Terbaik</h3>
+                        <p>
+                            Meraih predikat Lulusan Terbaik SMP periode
+                            2023–2026.
+                        </p>
+                    </div>
+
+
+                    <div class="achievement reveal">
+                        <div class="achievement-icon">🚀</div>
+                        <span class="year">2026</span>
+                        <h3>New Chapter</h3>
+                        <p>
+                            Memulai perjalanan baru di jenjang SMA dengan
+                            berbagai target dan tantangan baru.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             ORGANIZATION
+        ====================================================== -->
+        <section id="experience">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">04 — EXPERIENCE</span>
+                    <h2>Organization & Experience</h2>
+                    <p>
+                        Pengalaman yang membantu saya mengembangkan kemampuan
+                        komunikasi, kerja sama, dan kepemimpinan.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="info-card reveal">
+                        <h3>🤝 Organization</h3>
+                        <br>
+                        <p style="color: var(--muted);">
+                            Aktif dan tertarik dalam kegiatan organisasi sekolah
+                            sebagai sarana untuk belajar bekerja sama,
+                            berkomunikasi, dan bertanggung jawab.
+                        </p>
+                    </div>
+
+                    <div class="info-card reveal">
+                        <h3>💻 Projects</h3>
+                        <br>
+                        <p style="color: var(--muted);">
+                            Mengembangkan berbagai project sekolah dan
+                            project kreatif yang berkaitan dengan teknologi,
+                            pendidikan, dan desain.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             SKILLS
+        ====================================================== -->
+        <section id="skills">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">05 — SKILLS</span>
+                    <h2>What I Can Do</h2>
+                </div>
+
+                <div class="skills-grid">
+
+                    <div class="skill-box reveal">
+                        <h3>Personal Skills</h3>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>Teamwork</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>Communication</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>Leadership</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>Critical Thinking</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill-box reveal">
+                        <h3>Technical Skills</h3>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>HTML</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>CSS</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>JavaScript</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="skill-top">
+                                <span>Canva</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             PROJECTS
+        ====================================================== -->
+        <section id="projects">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">06 — PROJECTS</span>
+                    <h2>Selected Projects</h2>
+                    <p>
+                        Kumpulan project yang pernah atau sedang saya kerjakan.
+                    </p>
+                </div>
+
+                <div class="project-grid">
+
+                    <div class="project reveal">
+                        <div class="project-image">💻</div>
+                        <div class="project-content">
+                            <h3>Personal Portfolio</h3>
+                            <p>
+                                Website portfolio pribadi untuk menampilkan
+                                perjalanan, pengalaman, dan pencapaian.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="project reveal">
+                        <div class="project-image">🎨</div>
+                        <div class="project-content">
+                            <h3>Creative School Project</h3>
+                            <p>
+                                Berbagai project kreatif yang dibuat untuk
+                                kegiatan dan tugas sekolah.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">Design</span>
+                                <span class="tag">Canva</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="project reveal">
+                        <div class="project-image">📚</div>
+                        <div class="project-content">
+                            <h3>Education Project</h3>
+                            <p>
+                                Project yang berhubungan dengan pendidikan,
+                                pembelajaran, dan pengembangan siswa.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">Education</span>
+                                <span class="tag">Project</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             FUTURE GOALS
+        ====================================================== -->
+        <section id="goals">
+            <div class="container">
+
+                <div class="goal-box reveal">
+
+                    <span class="small">07 — FUTURE GOALS</span>
+
+                    <h3>Dream Big. Learn More.</h3>
+
+                    <p>
+                        Setiap pencapaian adalah bagian dari perjalanan.
+                        Tujuan saya adalah terus berkembang dan mempersiapkan
+                        diri untuk melanjutkan pendidikan ke Fakultas Kedokteran
+                        Universitas Padjadjaran.
+                    </p>
+
+                    <div class="roadmap">
+                        <span class="active">SMA</span>
+                        <b class="arrow">→</b>
+                        <span>University</span>
+                        <b class="arrow">→</b>
+                        <span class="active">FK UNPAD</span>
+                        <b class="arrow">→</b>
+                        <span>Medical Education</span>
+                        <b class="arrow">→</b>
+                        <span>Doctor</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             MY DREAM
+        ====================================================== -->
+        <section id="dream">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">08 — MY DREAM</span>
+                    <h2>A Dream to Become a Doctor</h2>
+                </div>
+
+                <div class="about-text reveal" style="text-align:center;">
+
+                    <div style="font-size:60px; margin-bottom:20px;">
+                        🩺
+                    </div>
+
+                    <p>
+                        Saya memiliki cita-cita untuk menjadi seorang dokter.
+                        Untuk mewujudkannya, saya ingin terus mengembangkan
+                        kemampuan akademik, memperluas pengalaman, dan
+                        mempersiapkan diri untuk melanjutkan pendidikan ke
+                        <strong style="color:var(--gold-light);">
+                            Fakultas Kedokteran Universitas Padjadjaran (UNPAD)
+                        </strong>.
+                    </p>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             GALLERY
+        ====================================================== -->
+        <section id="gallery">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="small">09 — GALLERY</span>
+                    <h2>My Memories</h2>
+                    <p>
+                        Tempat untuk menyimpan dokumentasi perjalanan,
+                        kegiatan, dan project.
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 01</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 02</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 03</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 04</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 05</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 06</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 07</span>
+                    </div>
+
+                    <div class="gallery-item reveal">
+                        <span>📸 Photo 08</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+        <section id="contact">
+            <div class="container contact">
+
+                <div class="contact-box reveal">
+
+                    <span class="small">10 — CONTACT</span>
+
+                    <h2>Let's Connect.</h2>
+
+                    <p>
+                        Terima kasih sudah mengunjungi portfolio saya.
+                        Mari terhubung dan berbagi pengalaman.
+                    </p>
+
+                    <a href="mailto:emailkamu@example.com"
+                       class="btn btn-primary">
+                        Contact Me →
+                    </a>
+
+                    <div class="socials">
+
+                        <!-- GANTI LINK DI BAWAH -->
+
+                        <a href="#" class="social">
+                            Instagram
+                        </a>
+
+                        <a href="#" class="social">
+                            GitHub
+                        </a>
+
+                        <a href="#" class="social">
+                            LinkedIn
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer>
+        <div class="container">
+            © <span id="year"></span> Muhamad Alfin Kamal Artna.
+            All Rights Reserved.
+        </div>
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script>
+
+        /* ================================================
+           LOADER
+        ================================================= */
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+
+                const loader = document.getElementById("loader");
+
+                loader.style.opacity = "0";
+                loader.style.pointerEvents = "none";
+
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 700);
+
+            }, 1500);
+
+        });
+
+
+        /* ================================================
+           NAVBAR SCROLL
+        ================================================= */
+        const header = document.getElementById("header");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+
+        });
+
+
+        /* ================================================
+           MOBILE MENU
+        ================================================= */
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+
+            navLinks.classList.toggle("open");
+
+            if (navLinks.classList.contains("open")) {
+                menuBtn.textContent = "✕";
+            } else {
+                menuBtn.textContent = "☰";
+            }
+
+        });
+
+
+        /* CLOSE MOBILE MENU */
+        document.querySelectorAll(".nav-links a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("open");
+                menuBtn.textContent = "☰";
+
+            });
+
+        });
+
+
+        /* ================================================
+           SCROLL REVEAL
+        ================================================= */
+        const reveals = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("active");
+
+                        revealObserver.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+        reveals.forEach(element => {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* ================================================
+           SKILL BAR ANIMATION
+        ================================================= */
+        const skillBars = document.querySelectorAll(".skill-progress");
+
+        const skillObserver = new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        const width =
+                            entry.target.getAttribute("data-width");
+
+                        entry.target.style.width = width;
+
+                        skillObserver.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.5
+            }
+
+        );
+
+
+        skillBars.forEach(bar => {
+
+            skillObserver.observe(bar);
+
+        });
+
+
+        /* ================================================
+           CURRENT YEAR
+        ================================================= */
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        /* ================================================
+           SMOOTH ACTIVE NAVIGATION
+        ================================================= */
+        const sections = document.querySelectorAll("section[id]");
+        const navItems = document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const sectionTop = section.offsetTop - 150;
+
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+
+            });
+
+            navItems.forEach(link => {
+
+                link.style.color = "";
+
+                if (link.getAttribute("href") === "#" + current) {
+                    link.style.color = "var(--gold-light)";
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
